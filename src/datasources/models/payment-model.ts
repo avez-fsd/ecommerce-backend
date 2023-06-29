@@ -1,0 +1,65 @@
+import { Table, Column, Model } from 'sequelize-typescript';
+
+@Table({
+  tableName: 'payments',
+  timestamps: true,
+})
+export default class Payment extends Model {
+
+  @Column({
+    field: 'id',
+    primaryKey: true,
+    autoIncrement: true
+  })
+  id?: number;
+
+  @Column({
+    field: 'user_id'
+  })
+  userId?: number;
+
+  @Column({
+    field: 'order_no'
+  })
+  orderNo?: string;
+
+  @Column({
+    field: 'payment_reference_id'
+  })
+  paymentReferenceId?: string;
+
+  @Column({
+    field: 'payment_type'
+  })
+  paymentType?: string;
+
+  @Column({
+    field: 'amount'
+  })
+  amount?: number;
+
+  @Column({
+    field: 'commission_percentage'
+  })
+  commissionPercentage?: number;
+
+  @Column({
+    field: 'platform_commission',
+  })
+  platformCommission?: number;
+
+  @Column({
+    field: 'transfer_amount',
+  })
+  transferAmount?: number;
+
+  @Column({
+    field: 'created_at',
+  })
+  createdAt?: string;
+
+  @Column({
+    field: 'updated_at',
+  })
+  updatedAt?: string;
+}

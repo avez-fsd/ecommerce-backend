@@ -11,11 +11,11 @@ Flow:
 
 Orders: 
 
-Id, order_no, total_amount, payment_id, total_delivery_fee, user_id, created_at, updated_at
+Id, order_no, total_amount, payment_id, total_delivery_fee, user_id, order_status_id (not confirmed or confirmed or full filled), created_at, updated_at
 
 Order Details:
 
-Id, order_no, parend_order_id, product_id, product_name, map, selling-price, discount, shipping_addr, shipping_city, shipping_state, shipping_pincode, shipping_weight, order_status_id, created_at, updated_at
+Id, order_no, parend_order_id, user_id, product_id, product_name, mrp, selling-price, discount, quantity, delivery_fee, total_price, shipping_addr, shipping_city, shipping_state, shipping_pincode, shipping_weight, order_status_id, created_at, updated_at
 
 Order Statuses:
 
@@ -29,7 +29,8 @@ Status:
 5. Ready to pickup
 6. Shipped
 7. Out for delivery
-8. Full filled
+8. Delivered
+9. Full Filled
 
 Order Status Log:
 
@@ -49,7 +50,7 @@ Id, name, email, password, created_at, updated_at
 
 Payments:
 
-Id, order_id, customer_id, payment_type, payment_reference_id, total_amount, commission_percentage, platform_commission, transfer_amount, payment_status_id, created_at, updated_at
+Id, order_id, user_id, payment_type, payment_reference_id, amount, commission_percentage, platform_commission, transfer_amount, payment_status_id, created_at, updated_at
 
 Payment Statuses:
 Id, status, created_at, updated_at
