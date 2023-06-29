@@ -1,4 +1,5 @@
 import { Table, Column, Model } from 'sequelize-typescript';
+import User from './user-model';
 
 @Table({
   tableName: 'customer_addresses',
@@ -47,4 +48,8 @@ export default class CustomerAddress extends Model {
     field: 'updated_at',
   })
   updatedAt?: string;
+}
+
+export function addressAssociations() {
+    CustomerAddress.belongsTo(User)
 }

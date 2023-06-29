@@ -1,4 +1,5 @@
 import { Table, Column, Model } from 'sequelize-typescript';
+import Order from './order-model';
 
 @Table({
   tableName: 'order_details',
@@ -107,4 +108,10 @@ export default class OrderDetail extends Model {
     field: 'updated_at',
   })
   updatedAt?: string;
+}
+
+export function orderDetailAssociations() {
+    OrderDetail.belongsTo(Order,{
+        foreignKey: 'parentOrderId'
+    })
 }

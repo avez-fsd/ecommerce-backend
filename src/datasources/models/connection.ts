@@ -1,15 +1,16 @@
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript'
-import Order from './order-model';
-import OrderDetail from './order-detail-model';
+import Order, { orderAssociations } from './order-model';
+import OrderDetail, { orderDetailAssociations } from './order-detail-model';
 import Category from './category-model';
 import Commission from './commission-model';
-import CustomerAddress from './customer-address-model';
+import CustomerAddress, { addressAssociations } from './customer-address-model';
 import DeliveryFee from './delivery-fee-model';
 import OrderStatus from './order-status-model';
 import OrderStatusLog from './order-status-log-model';
-import Payment from './payment-model';
+import Payment, { paymentAssociations } from './payment-model';
 import PaymentStatusLog from './payment-status-log-model';
 import Product from './product-model';
+import User, { userAssociations } from './user-model';
 
 const dbConnectionOptions: SequelizeOptions = {
   dialect: 'mysql',
@@ -34,7 +35,13 @@ dbConnection.addModels(
     OrderStatusLog,
     Payment,
     PaymentStatusLog,
-    Product
+    Product,
+    User
   ]
 );
 
+userAssociations();
+addressAssociations();
+orderAssociations();
+orderDetailAssociations();
+paymentAssociations();

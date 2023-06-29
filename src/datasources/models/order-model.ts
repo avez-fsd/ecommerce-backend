@@ -1,4 +1,6 @@
 import { Table, Column, Model } from 'sequelize-typescript';
+import OrderDetail from './order-detail-model';
+import Payment from './payment-model';
 
 @Table({
   tableName: 'orders',
@@ -47,4 +49,14 @@ export default class Order extends Model {
     field: 'updated_at',
   })
   updatedAt?: string;
+}
+
+export function orderAssociations() {
+    Order.hasMany(OrderDetail,{
+        foreignKey: 'parentOrderId'
+    })
+
+    Order.hasOne(Payment,{
+        foreignKey:'parentOrderId'
+    })
 }

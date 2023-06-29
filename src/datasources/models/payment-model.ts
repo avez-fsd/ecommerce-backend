@@ -1,4 +1,5 @@
 import { Table, Column, Model } from 'sequelize-typescript';
+import Order from './order-model';
 
 @Table({
   tableName: 'payments',
@@ -19,9 +20,9 @@ export default class Payment extends Model {
   userId?: number;
 
   @Column({
-    field: 'order_no'
+    field: 'parent_order_id'
   })
-  orderNo?: string;
+  parentOrderId?: number;
 
   @Column({
     field: 'payment_reference_id'
@@ -62,4 +63,10 @@ export default class Payment extends Model {
     field: 'updated_at',
   })
   updatedAt?: string;
+}
+
+export function paymentAssociations() {
+    Payment.belongsTo(Order,{
+        foreignKey: 'parentOrderId'
+    })
 }
