@@ -71,3 +71,102 @@ Id, commission_percentage, created_at, updated_at
 Delivery Fee
 
 Id, min_price, max_price, delivery_fee, created_at, updated_at
+
+
+Routes:
+
+1. Auth
+
+method = POST
+body = {
+    email:'',
+    name: '',
+    password: ''
+}
+endpoint = /v1/signup
+
+method = POST
+body = {
+    email:'',
+    password: ''
+}
+endpoint = /v1/login
+
+2. Product
+
+method = GET
+endpoint = /v1/products
+
+/v1/products
+/v1/products?category=[1]
+/v1/products?category=[1]&min_price=100&max_price=200
+/v1/products?category=[1]&min_price=100&max_price=200&sortBy=high_to_low
+
+3. Cart
+
+method = GET
+headers = Authorization header
+endpoint = /v1/cart
+
+method = POST
+body = {
+    products:[1,2],
+    metadata: {
+        coupon_id:3,
+        etc....
+    }
+}
+endpoint = /v1/cart/guest
+
+4. User
+
+method = PATCH
+headers = Authorization header
+endpoint = /v1/users/edit
+
+method = GET
+headers = Authorization header
+endpoint = /v1/users/addresses
+
+method = POST
+headers = Authorization header
+endpoint = /v1/users/addresses/add
+
+method = PATCH
+headers = Authorization header
+endpoint = /v1/users/addresses/{address_id}
+
+5. Order
+
+method = GET
+headers = Authorization header
+endpoint = /v1/orders
+
+method = POST
+headers = Authorization header
+no body
+endpoint = /v1/orders/create
+
+6. Payment
+
+method = POST
+headers = Authorization header
+body - order id, payment_type
+endpoint = /v1/payments/create
+
+method = GET
+headers = Authorization header
+endpoint = /v1/payments
+
+method = GET
+headers = Authorization header
+endpoint = /v1/payments/notification
+
+7. Webhook
+
+method = POST
+endpoint = /v1/webhook/stripe
+
+
+
+

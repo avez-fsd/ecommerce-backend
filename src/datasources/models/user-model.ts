@@ -32,12 +32,12 @@ export default class User extends Model {
   @Column({
     field: 'created_at',
   })
-  createdAt?: string;
+  createdAt?: Date;
 
   @Column({
     field: 'updated_at',
   })
-  updatedAt?: string;
+  updatedAt?: Date;
 }
 
 export function userAssociations() {
