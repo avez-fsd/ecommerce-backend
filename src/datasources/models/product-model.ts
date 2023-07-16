@@ -1,4 +1,5 @@
 import { Table, Column, Model } from 'sequelize-typescript';
+import CartProduct from './cart-product-model';
 
 @Table({
   tableName: 'products',
@@ -62,4 +63,10 @@ export default class Product extends Model {
     field: 'updated_at',
   })
   updatedAt?: Date;
+}
+
+export const productAssociations = () => {
+  Product.hasMany(CartProduct,{
+    foreignKey:'product_id'
+  })
 }

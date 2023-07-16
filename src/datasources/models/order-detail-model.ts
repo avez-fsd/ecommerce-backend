@@ -112,6 +112,6 @@ export default class OrderDetail extends Model {
 
 export function orderDetailAssociations() {
     OrderDetail.belongsTo(Order,{
-        foreignKey: 'parentOrderId'
+        foreignKey: 'parent_order_id'
     })
 }

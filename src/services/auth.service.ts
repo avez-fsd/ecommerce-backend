@@ -16,7 +16,7 @@ class AuthService {
         });
 
         const payload = {
-            email: user.email
+            id: user.id
         };
         return jwtHelper.generateToken(payload);
     }
@@ -29,7 +29,7 @@ class AuthService {
         if(!isPasswordValid) throw new UnauthorizedException("Invalid Email Or Password!", "", 403);
         
         const payload = {
-            email: user.email
+            id: user.id
         }
         
         return jwtHelper.generateToken(payload);

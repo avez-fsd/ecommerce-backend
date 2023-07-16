@@ -25,11 +25,15 @@ class JwtHelper {
         })
     }
 
-    extractJwtToken(authHeaders:string) {
+    getJwtTokenFromHeader(authHeaders:string) {
         const authHeader = authHeaders.split(' ');
         if (authHeader.length !== 2) return false;
         if (authHeader[0] !== 'Bearer') return false;
         return authHeader[1];
+    }
+
+    decodeJwtToken(token:string){
+        return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
     }
 }
 

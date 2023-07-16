@@ -1,5 +1,7 @@
 import { Table, Column, Model } from 'sequelize-typescript';
 import CustomerAddress from './customer-address-model';
+import Cart from './cart-model';
+import Order from './order-model';
 
 @Table({
   tableName: 'users',
@@ -38,10 +40,20 @@ export default class User extends Model {
     field: 'updated_at',
   })
   updatedAt?: Date;
+
+  customerAddresses?: CustomerAddress[];
+
+  cart?: Cart;
 }
 
 export function userAssociations() {
     User.hasMany(CustomerAddress,{
-        foreignKey: 'userId'
+        foreignKey: 'user_id'
+    });
+    User.hasOne(Cart, {
+      foreignKey:'user_id'
+    });
+    User.hasMany(Order, {
+      foreignKey:'user_id'
     })
 }

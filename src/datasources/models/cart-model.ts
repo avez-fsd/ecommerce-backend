@@ -1,11 +1,13 @@
 import { Table, Column, Model } from 'sequelize-typescript';
+import CartProduct from './cart-product-model';
 import User from './user-model';
 
 @Table({
-  tableName: 'customer_addresses',
+  tableName: 'carts',
   timestamps: true,
 })
-export default class CustomerAddress extends Model {
+
+export default class Cart extends Model {
 
   @Column({
     field: 'id',
@@ -20,24 +22,9 @@ export default class CustomerAddress extends Model {
   userId?: number;
 
   @Column({
-    field: 'address'
+    field: 'coupon_id'
   })
-  address?: string;
-
-  @Column({
-    field: 'state'
-  })
-  state?: string;
-
-  @Column({
-    field: 'city'
-  })
-  city?: string;
-
-  @Column({
-    field: 'pincode',
-  })
-  pincode?: string;
+  couponId?: number;
 
   @Column({
     field: 'created_at',
@@ -48,10 +35,17 @@ export default class CustomerAddress extends Model {
     field: 'updated_at',
   })
   updatedAt?: Date;
+
+  cartProducts?: CartProduct[];
+
 }
 
-export function addressAssociations() {
-    CustomerAddress.belongsTo(User,{
-      foreignKey:'user_id'
-    })
+export const cartAssociations = () => {
+    Cart.hasMany(CartProduct,{
+        foreignKey: 'cart_id',
+        onDelete: 'CASCADE'
+    });
+    Cart.belongsTo(User,{
+        foreignKey:'user_id'
+    });
 }

@@ -67,6 +67,6 @@ export default class Payment extends Model {
 
 export function paymentAssociations() {
     Payment.belongsTo(Order,{
-        foreignKey: 'parentOrderId'
+        foreignKey: 'parent_order_id'
     })
 }

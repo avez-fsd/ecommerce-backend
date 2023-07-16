@@ -44,6 +44,15 @@ class AuthController {
             return response.failed(req, res, err.message, null, err.httpCode);
         }
     }
+
+    async verify(req: Request, res: Response){
+        try {
+            console.log('test')
+            
+        } catch (err:any) {
+            return response.failed(req, res, err.message, null, err.httpCode);
+        }
+    }
 }
 
 export default new AuthController();

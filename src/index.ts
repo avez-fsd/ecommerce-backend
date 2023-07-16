@@ -6,6 +6,7 @@ import routes from './routes'
 import addRequestId from '@middelwares/request-id.middleware';
 import response from "@helpers/response.helper"
 import express, { Express, NextFunction, Request, Response } from 'express';
+import { RedisHelper } from '@helpers/redis.helper';
 
 
 const app: Express = express();
@@ -15,6 +16,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(addRequestId);
+
+RedisHelper.getInstance();
 
 app.use('/', routes);
 

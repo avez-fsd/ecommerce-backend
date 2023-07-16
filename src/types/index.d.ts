@@ -1,3 +1,5 @@
+import User from "@datasources/models/user-model";
+
 export {}
 
 declare global {
@@ -9,6 +11,7 @@ declare global {
       fullURL?: string;
       event?: string
       eventName?: string;
+      user?: User;
     }
   }
 

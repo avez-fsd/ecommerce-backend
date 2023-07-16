@@ -40,6 +40,7 @@ const handler = {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   handler5xx: (err: any, req: Request, res: Response, next: NextFunction) => {
+    console.log(err,'here eroror')
     const e = err as unknown as CustomException;
     Object.assign(err, { error: err });
 

@@ -9,8 +9,10 @@ import OrderStatus from './order-status-model';
 import OrderStatusLog from './order-status-log-model';
 import Payment, { paymentAssociations } from './payment-model';
 import PaymentStatusLog from './payment-status-log-model';
-import Product from './product-model';
+import Product, { productAssociations } from './product-model';
 import User, { userAssociations } from './user-model';
+import Cart, { cartAssociations } from './cart-model';
+import CartProduct, { cartProductAssociations } from './cart-product-model';
 
 const dbConnectionOptions: SequelizeOptions = {
   dialect: 'mysql',
@@ -36,7 +38,9 @@ dbConnection.addModels(
     Payment,
     PaymentStatusLog,
     Product,
-    User
+    User,
+    Cart,
+    CartProduct
   ]
 );
 
@@ -45,3 +49,8 @@ addressAssociations();
 orderAssociations();
 orderDetailAssociations();
 paymentAssociations();
+cartAssociations();
+cartProductAssociations();
+productAssociations();
+
+// dbConnection.sync({force:true})

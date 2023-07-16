@@ -1,6 +1,7 @@
 import { Table, Column, Model } from 'sequelize-typescript';
 import OrderDetail from './order-detail-model';
 import Payment from './payment-model';
+import User from './user-model';
 
 @Table({
   tableName: 'orders',
@@ -19,6 +20,11 @@ export default class Order extends Model {
     field: 'order_no'
   })
   orderNo?: string;
+
+  @Column({
+    field: 'user_id'
+  })
+  userId?: number;
 
   @Column({
     field: 'order_status_id'
@@ -53,10 +59,14 @@ export default class Order extends Model {
 
 export function orderAssociations() {
     Order.hasMany(OrderDetail,{
-        foreignKey: 'parentOrderId'
+        foreignKey: 'parent_order_id'
     })
 
     Order.hasOne(Payment,{
-        foreignKey:'parentOrderId'
+        foreignKey:'parent_order_id'
+    })
+
+    Order.belongsTo(User, {
+      foreignKey:'user_id'
     })
 }
