@@ -4,7 +4,6 @@ import { validateRequest } from "@helpers/validation.helper";
 import { SaveToCartSchema } from "@requests/cart.schema";
 import CartService from "@services/cart.service";
 import { SaveCartRequest } from "@interfaces/cart.interface";
-import Product from "@datasources/models/product-model";
 import { getProductById } from "@datasources/product.datasource";
 import NotFoundException from "@exceptions/not-found.exception";
 import { getCartOfUser } from "@datasources/cart.datasource";
@@ -52,7 +51,7 @@ class CartController {
 
     async cartSummary(req: Request, res: Response){
         try {
-
+            console.log(testVar, 'here is the variable')
             const cart = await getCartOfUser(req.user?.id as number);
             if(!cart) return response.success(req, res, undefined, "Your cart is empty!", 204);
 

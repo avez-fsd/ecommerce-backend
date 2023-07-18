@@ -1,5 +1,5 @@
 import { addProductToCart, createCart, decreaseItemQty, deleteCart, getCartOfUser, getCartProductDetails, getCartProductsCount, getProductFromCart, increaseItemQty } from "@datasources/cart.datasource";
-import { getDeliveryFee } from "@datasources/delivery_fee.datasource";
+import { getDeliveryFee, getDeliveryFeeMemoryByPrice } from "@datasources/delivery_fee.datasource";
 import Cart from "@datasources/models/cart-model";
 import CartProduct from "@datasources/models/cart-product-model";
 import Product from "@datasources/models/product-model";
@@ -40,8 +40,8 @@ class CartService {
         if(cartProducts.length === 0) throw new NotFoundException('Your cart is empty!');
 
         const totalSellingPrice = cartProducts.reduce((total, val) => total + (Number(val.product?.sellingPrice) * Number(val.quantity)) , 0);
-        const deliveryFee = await getDeliveryFee(totalSellingPrice);
-
+        const deliveryFee = getDeliveryFeeMemoryByPrice(totalSellingPrice);
+        
         return {
             products: cartProducts.map((cartProduct) => {
                 return {

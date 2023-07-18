@@ -5,9 +5,9 @@ import '@datasources/models/connection'
 import routes from './routes'
 import addRequestId from '@middelwares/request-id.middleware';
 import response from "@helpers/response.helper"
-import express, { Express, NextFunction, Request, Response } from 'express';
+import express, { Express } from 'express';
 import { RedisHelper } from '@helpers/redis.helper';
-
+import DeliveryFeeConfigMemory from '@datasources/in-memory/delivery-fee-config.memory';
 
 const app: Express = express();
 const port = process.env.PORT;
@@ -18,6 +18,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(addRequestId);
 
 RedisHelper.getInstance();
+
+DeliveryFeeConfigMemory.init();
 
 app.use('/', routes);
 
