@@ -4,6 +4,7 @@ import CartProduct from './cart-product-model';
 @Table({
   tableName: 'products',
   timestamps: true,
+  modelName: 'product'
 })
 export default class Product extends Model {
 

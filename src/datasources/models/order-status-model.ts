@@ -3,6 +3,7 @@ import { Table, Column, Model } from 'sequelize-typescript';
 @Table({
   tableName: 'order_statuses',
   timestamps: true,
+  modelName: 'orderStatus'
 })
 export default class OrderStatus extends Model {
 

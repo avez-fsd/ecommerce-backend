@@ -4,6 +4,7 @@ import User from './user-model';
 @Table({
   tableName: 'customer_addresses',
   timestamps: true,
+  modelName: 'customerAddress'
 })
 export default class CustomerAddress extends Model {
 

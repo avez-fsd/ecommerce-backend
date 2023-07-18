@@ -6,6 +6,7 @@ import User from './user-model';
 @Table({
   tableName: 'orders',
   timestamps: true,
+  modelName: 'order'
 })
 export default class Order extends Model {
 

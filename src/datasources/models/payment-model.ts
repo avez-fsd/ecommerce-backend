@@ -4,6 +4,7 @@ import Order from './order-model';
 @Table({
   tableName: 'payments',
   timestamps: true,
+  modelName: 'payment'
 })
 export default class Payment extends Model {
 

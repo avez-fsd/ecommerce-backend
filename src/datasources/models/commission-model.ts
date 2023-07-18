@@ -3,6 +3,7 @@ import { Table, Column, Model } from 'sequelize-typescript';
 @Table({
   tableName: 'commissions',
   timestamps: true,
+  modelName: 'commission'
 })
 export default class Commission extends Model {
 

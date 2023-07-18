@@ -6,6 +6,7 @@ import Order from './order-model';
 @Table({
   tableName: 'users',
   timestamps: true,
+  modelName: 'user'
 })
 export default class User extends Model {
 

@@ -13,6 +13,8 @@ router.post("/signin", authController.signIn.bind(authController));
 
 router.post("/cart/save",  asyncHandler(verifyToken), cartController.saveItem.bind(cartController));
 
+router.get("/cart/summary",  asyncHandler(verifyToken), cartController.cartSummary.bind(cartController));
+
 router.get("/verify", asyncHandler(verifyToken), authController.signIn.bind(authController));
 
 export default router;

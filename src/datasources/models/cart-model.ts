@@ -5,6 +5,7 @@ import User from './user-model';
 @Table({
   tableName: 'carts',
   timestamps: true,
+  modelName: 'cart'
 })
 
 export default class Cart extends Model {

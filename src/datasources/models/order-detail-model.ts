@@ -4,6 +4,7 @@ import Order from './order-model';
 @Table({
   tableName: 'order_details',
   timestamps: true,
+  modelName: 'orderDetail'
 })
 export default class OrderDetail extends Model {
 

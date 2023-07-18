@@ -3,6 +3,7 @@ import { Table, Column, Model } from 'sequelize-typescript';
 @Table({
   tableName: 'categories',
   timestamps: true,
+  modelName:'category'
 })
 export default class Category extends Model {
 

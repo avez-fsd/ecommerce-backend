@@ -5,6 +5,7 @@ import Product from './product-model';
 @Table({
   tableName: 'cart_products',
   timestamps: true,
+  modelName: 'cartProduct'
 })
 
 export default class CartProduct extends Model {
@@ -40,6 +41,8 @@ export default class CartProduct extends Model {
     field: 'updated_at',
   })
   updatedAt?: Date;
+
+  product?: Product;
 }
 
 export const cartProductAssociations = () => {
