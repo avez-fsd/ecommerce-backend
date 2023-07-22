@@ -13,7 +13,11 @@ router.post("/signin", authController.signIn.bind(authController));
 
 router.post("/cart/save",  asyncHandler(verifyToken), cartController.saveItem.bind(cartController));
 
+router.delete("/cart/delete",  asyncHandler(verifyToken), cartController.deleteItem.bind(cartController));
+
 router.get("/cart/summary",  asyncHandler(verifyToken), cartController.cartSummary.bind(cartController));
+
+router.get("/guest/cart/summary", cartController.guestCartSummary.bind(cartController));
 
 router.get("/verify", asyncHandler(verifyToken), authController.signIn.bind(authController));
 

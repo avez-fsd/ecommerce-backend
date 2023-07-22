@@ -64,6 +64,8 @@ export default class Product extends Model {
     field: 'updated_at',
   })
   updatedAt?: Date;
+
+  quantity?:number;
 }
 
 export const productAssociations = () => {

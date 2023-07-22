@@ -7,7 +7,7 @@ const finalResponse = (req: Request, res: Response, message: string, data: any, 
   const ok = code.toString().startsWith("2");
   if (ok) {
     res.set("Content-Type", `application/json`);
-    res.send(data)
+    res.status(code).send(data)
   } else if (req.headers.accept === `application/json`) {
     res.set("Content-Type", `application/json`);
     res.status(code).send({ message })

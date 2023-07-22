@@ -13,6 +13,7 @@
       "@helpers/*": ["src/helpers/*"],
       "@exceptions/*": ["src/exceptions/*"],
       "@datasources/*": ["src/datasources/*"],
+      "@memory/*": ["src/datasources/in-memory*"],
       "@requests/*": ["src/requests/*"],
       "@responses/*": ["src/responses/*"],
       "@middelwares/*": ["src/middlewares/*"],

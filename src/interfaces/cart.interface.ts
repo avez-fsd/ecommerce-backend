@@ -3,6 +3,10 @@ export interface SaveCartRequest {
     type: 'ADD' | 'REMOVE';
     withSummary: boolean;
 }
+export interface DeleteCartItemRequest {
+    productId: number;
+    withSummary: boolean;
+}
 
 export interface CartSummary {
     products: CartSummaryProduct[],
@@ -22,3 +26,7 @@ export interface CartSummaryProduct {
     quantity: number;
 }
 
+export interface GuestCartProduct {
+    productId: number;
+    quantity: number;
+}

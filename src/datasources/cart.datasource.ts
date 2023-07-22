@@ -68,3 +68,12 @@ export const getCartProductDetails = (cart: Cart) => {
         }
     })
 }
+
+export const deleteCartItemByCartId = (productId: number, cartId: number) => {
+    return CartProduct.destroy({
+        where:{
+            cartId,
+            productId
+        }
+    })
+}
