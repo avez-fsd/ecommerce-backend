@@ -77,3 +77,23 @@ export const deleteCartItemByCartId = (productId: number, cartId: number) => {
         }
     })
 }
+
+export const getCartWithProducts = (userId: number) => {
+    return Cart.findAll({
+        where: {
+            userId
+        },
+        include: [
+            {
+                model: CartProduct,
+                include: [
+                    {
+                        model: Product,
+                        required:true
+                    }
+                ],
+                required:true
+            }
+        ]
+    });
+}

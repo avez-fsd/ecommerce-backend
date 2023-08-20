@@ -13,6 +13,7 @@ import Product, { productAssociations } from './product-model';
 import User, { userAssociations } from './user-model';
 import Cart, { cartAssociations } from './cart-model';
 import CartProduct, { cartProductAssociations } from './cart-product-model';
+import PGConfig from './pg-config-model';
 
 const dbConnectionOptions: SequelizeOptions = {
   dialect: 'mysql',
@@ -40,7 +41,8 @@ dbConnection.addModels(
     Product,
     User,
     Cart,
-    CartProduct
+    CartProduct,
+    PGConfig
   ]
 );
 

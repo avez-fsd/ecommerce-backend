@@ -8,6 +8,7 @@ import response from "@helpers/response.helper"
 import express, { Express } from 'express';
 import { RedisHelper } from '@helpers/redis.helper';
 import DeliveryFeeConfigMemory from '@datasources/in-memory/delivery-fee-config.memory';
+import PGConfigMemory from '@datasources/in-memory/pg-config.memory';
 
 const app: Express = express();
 const port = process.env.PORT;
@@ -20,6 +21,8 @@ app.use(addRequestId);
 RedisHelper.getInstance();
 
 DeliveryFeeConfigMemory.init();
+
+PGConfigMemory.init();
 
 app.use('/', routes);
 

@@ -5,8 +5,8 @@ import Product from "@datasources/models/product-model";
 import { getProductsByIds } from "@datasources/product.datasource";
 import NotFoundException from "@exceptions/not-found.exception";
 import { CartSummary, CartSummaryProduct, DeleteCartItemRequest, GuestCartProduct, SaveCartRequest } from "@interfaces/cart.interface";
-
-class CartService {
+import OrderBaseService from "./base/order-base.service";
+class CartService extends OrderBaseService {
 
     async saveItemToCart(saveCartRequest: SaveCartRequest, userId: number): Promise<Cart | null>{
         let cart = await getCartOfUser(userId);
@@ -44,8 +44,8 @@ class CartService {
         const cartProducts = await getCartProductDetails(cart);
         if(cartProducts.length === 0) throw new NotFoundException('Your cart is empty!');
 
-        const totalSellingPrice = cartProducts.reduce((total, val) => total + (Number(val.product?.sellingPrice) * Number(val.quantity)) , 0);
-        const deliveryFee = getDeliveryFeeMemoryByPrice(totalSellingPrice);
+        const totalSellingPrice = this.getTotalSellingPrice(cartProducts);
+        const deliveryFee = this.getDeliveryFee(totalSellingPrice);
 
         return {
             products: cartProducts.map((cartProduct) => {
@@ -58,11 +58,11 @@ class CartService {
                     quantity: cartProduct.quantity
                 } as CartSummaryProduct
             } ),
-            totalMrp: cartProducts.reduce((total, val) => total + (Number(val.product?.mrp) * Number(val.quantity)) , 0),
+            totalMrp: this.getTotalMrp(cartProducts),
             totalSellingPrice,
-            totalDiscount: cartProducts.reduce((total, val) => total + (Number(val.product?.discount) * Number(val.quantity)) , 0),
-            totalDeliveryFee: deliveryFee?.amount as number,
-            finalAmount: totalSellingPrice + Number(deliveryFee?.amount)
+            totalDiscount: this.getTotalDiscount(cartProducts),
+            totalDeliveryFee: deliveryFee as number,
+            finalAmount: totalSellingPrice + Number(deliveryFee)
         }
     }
 

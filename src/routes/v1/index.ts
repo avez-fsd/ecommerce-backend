@@ -17,7 +17,7 @@ router.delete("/cart/delete",  asyncHandler(verifyToken), cartController.deleteI
 
 router.get("/cart/summary",  asyncHandler(verifyToken), cartController.cartSummary.bind(cartController));
 
-router.get("/guest/cart/summary", cartController.guestCartSummary.bind(cartController));
+router.get("/guest/cart/summary",  asyncHandler(verifyToken), cartController.guestCartSummary.bind(cartController));
 
 router.get("/verify", asyncHandler(verifyToken), authController.signIn.bind(authController));
 

@@ -6,7 +6,7 @@ import CartService from "@services/cart.service";
 import { DeleteCartItemRequest, GuestCartProduct, SaveCartRequest } from "@interfaces/cart.interface";
 import { getProductById } from "@datasources/product.datasource";
 import NotFoundException from "@exceptions/not-found.exception";
-import { getCartOfUser } from "@datasources/cart.datasource";
+import { getCartOfUser, getCartWithProducts } from "@datasources/cart.datasource";
 
 class CartController {
 
@@ -62,7 +62,7 @@ class CartController {
         }
     }
 
-    async cartSummary(req: Request, res: Response){
+    async cartSummary(req: Request, res: Response) {
         try {
             const cart = await getCartOfUser(req.user?.id as number);
             if(!cart) return response.success(req, res, undefined, "Your cart is empty!", 204);
@@ -81,10 +81,12 @@ class CartController {
         try {
             validateRequest(GuestCartSummary, req.body, req);
             
-            const cartService = new CartService();
-            const cartSummary = await cartService.guestCartSummary(req.body.products as GuestCartProduct[]);
+            // const cartService = new CartService();
+            // const cartSummary = await cartService.guestCartSummary(req.body.products as GuestCartProduct[]);
 
-            return response.success(req, res, cartSummary);
+            const test = await getCartWithProducts(req.user?.id as number);
+
+            return response.success(req, res, test);
             
         } catch (err:any) {
             console.log(err)

@@ -170,3 +170,11 @@ endpoint = /v1/webhook/stripe
 
 
 
+Order Service:
+Below are the funcitons need to be implemented
+1. Create Order
+2. Cancel Order
+3. Confirm Order
+4. Update Order Status
+
+https://www.mystoredemo.io/#/
